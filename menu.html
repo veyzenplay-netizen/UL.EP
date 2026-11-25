@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ULEP | Menu</title>
+    <meta name="theme-color" content="#ffffff">
+    <script src="theme.js"></script>
+    <link rel="icon" href="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="disclaimer.css">
+    <link rel="stylesheet" href="theme.css">
+</head>
+
+<body data-page="menu">
+
+    <header class="site-header">
+
+        <a class="brand" href="index.html" aria-label="ULEP home">
+            <img class="logo-light" src="logo-crop.png" alt="ULEP" width="412" height="277">
+            <img class="logo-dark" src="logo-crop-dark.png" alt="" width="412" height="277">
+        </a>
+
+        <nav class="menu" aria-label="Main">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html" aria-current="page">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-tools">
+            <button class="header-link" type="button" data-open-disclaimer>Disclaimer</button>
+            <div data-theme-slot></div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="page-head">
+            <div class="wrap">
+                <h1>ULEP Tools</h1>
+                <p class="intro">
+                    Everything you can use in ULEP, in one place. Pick a tool
+                    to see what it does, then open it.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 24px;">
+            <div class="tools">
+            <article class="tool">
+                <div class="tool-bg" aria-hidden="true"></div>
+                <div class="tool-fade" aria-hidden="true"></div>
+
+                <!-- Pictures: they change on their own. Add or swap <img> lines here. -->
+                <figure class="shot">
+                    <img src="images/image-lab-1.png" alt="Image Lab showing an original cat photo next to the processed result" class="is-on">
+                    <img src="images/image-lab-2.png" alt="Image Lab "What is happening" panel with the five processing steps">
+                </figure>
+
+                <div class="tool-text">
+                    <h2>Image Lab</h2>
+                    <p>Resize a picture, change its quality, or switch its format, and watch each step happen as it is processed. Your image stays in your browser.</p>
+                    <a class="btn btn-go" href="pixel-to-data.html#image">Try now!</a>
+                </div>
+            </article>
+
+            <article class="tool">
+                <div class="tool-bg" aria-hidden="true"></div>
+                <div class="tool-fade" aria-hidden="true"></div>
+
+                <!-- Pictures: they change on their own. Add or swap <img> lines here. -->
+                <figure class="shot">
+                    <img src="images/pixel-lab-1.png" alt="Pixel Lab showing a picture as a grid of hex colour codes" class="is-on">
+                    <img src="images/pixel-lab-2.png" alt="Pixel Lab black and white grid where every square is a 0 or a 1">
+                </figure>
+
+                <div class="tool-text">
+                    <h2>Pixel Lab</h2>
+                    <p>Paint on a grid of pixels, then see the numbers behind your picture: RGB values, hex codes and binary. A hands-on way to learn how images become data.</p>
+                    <a class="btn btn-go" href="pixel-to-data.html#pixel">Try now!</a>
+                </div>
+            </article>
+
+            <article class="tool">
+                <div class="tool-bg" aria-hidden="true"></div>
+                <div class="tool-fade" aria-hidden="true"></div>
+
+                <!-- Pictures: they change on their own. Add or swap <img> lines here. -->
+                <figure class="shot">
+                    <img src="images/learning-1.png" alt="Learning page showing a lesson on what a pixel is, with a slider" class="is-on">
+                </figure>
+
+                <div class="tool-text">
+                    <h2>Learning</h2>
+                    <p>Test what you know about pixels, colour and data. Every round has ten random questions with instant feedback.</p>
+                    <a class="btn btn-go" href="pixel-to-data.html#learning">Try now!</a>
+                </div>
+            </article>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <p>Understanding digital images and data conversion</p>
+
+        <p class="copyright">&copy; 2026 ULEP. All rights reserved.</p>
+
+        <p class="footer-links">
+            <button class="link-btn" type="button" data-guide-show hidden>Show ULEP Guide</button>
+        </p>
+
+    </footer>
+
+
+<script src="slides.js"></script>
+<script src="disclaimer.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>

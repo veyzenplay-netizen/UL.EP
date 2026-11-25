@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ULEP | Edit and Learn</title>
+    <meta name="theme-color" content="#ffffff">
+    <script src="theme.js"></script>
+    <link rel="icon" href="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="disclaimer.css">
+    <link rel="stylesheet" href="theme.css">
+</head>
+
+<body data-page="home">
+
+    <header class="site-header">
+
+        <a class="brand" href="index.html" aria-label="ULEP home">
+            <img class="logo-light" src="logo-crop.png" alt="ULEP" width="412" height="277">
+            <img class="logo-dark" src="logo-crop-dark.png" alt="" width="412" height="277">
+        </a>
+
+        <nav class="menu" aria-label="Main">
+            <ul>
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-tools">
+            <button class="header-link" type="button" data-open-disclaimer>Disclaimer</button>
+            <div data-theme-slot></div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- HOME / COVER -->
+        <section class="hero" id="home">
+
+            <canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+            <div class="hero-inner">
+
+                <p class="welcome">Welcome to the ULEP site</p>
+
+                <h1>Where you can edit and learn!</h1>
+
+                <p class="lead">
+                    Making digital images to data conversion easier to
+                    understand. Explore our website to edit your images,
+                    adjust their size, reduce file size, and discover how
+                    digital images work.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="about.html" class="btn btn-primary btn-swap">
+                        <span class="swap-a">Explore</span>
+                        <span class="swap-b" aria-hidden="true">Get to know ULEP</span>
+                    </a>
+                    <a href="pixel-to-data.html" class="btn btn-try">Try ULEP</a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <p>Understanding digital images and data conversion</p>
+
+        <p class="copyright">&copy; 2026 ULEP. All rights reserved.</p>
+
+        <p class="footer-links">
+            <button class="link-btn" type="button" data-guide-show hidden>Show ULEP Guide</button>
+        </p>
+
+    </footer>
+
+
+    <script>
+        /* ---------- Cover image: starts as big pixel blocks, sharpens into the photo ---------- */
+        (function () {
+            var hero = document.getElementById('home');
+            var canvas = document.getElementById('heroCanvas');
+            if (!canvas || !canvas.getContext) return;
+
+            var ctx = canvas.getContext('2d');
+            var off = document.createElement('canvas');
+            var octx = off.getContext('2d');
+            var img = new Image();
+            var loaded = false;
+            var block = 1;
+            var w = 0, h = 0;
+
+            function draw(b) {
+                if (!loaded) return;
+                var r = Math.max(w / img.width, h / img.height);
+                var dw = img.width * r, dh = img.height * r;
+                var dx = (w - dw) / 2, dy = (h - dh) / 2;
+
+                ctx.clearRect(0, 0, w, h);
+
+                if (b <= 1) {
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = 'high';
+                    ctx.drawImage(img, dx, dy, dw, dh);
+                    return;
+                }
+
+                var sw = Math.max(1, Math.ceil(w / b));
+                var sh = Math.max(1, Math.ceil(h / b));
+                off.width = sw;
+                off.height = sh;
+                octx.imageSmoothingEnabled = true;
+                octx.drawImage(img, dx / b, dy / b, dw / b, dh / b);
+
+                ctx.imageSmoothingEnabled = false;
+                ctx.drawImage(off, 0, 0, sw, sh, 0, 0, sw * b, sh * b);
+            }
+
+            function resize() {
+                w = hero.clientWidth;
+                h = hero.clientHeight;
+                canvas.width = w;
+                canvas.height = h;
+                draw(block);
+            }
+
+            img.onload = function () {
+                loaded = true;
+                resize();
+
+                var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (reduce) { block = 1; draw(1); canvas.classList.add('ready'); return; }
+
+                var steps = [72, 52, 38, 28, 20, 14, 10, 6, 3, 1];
+                var i = 0;
+                block = steps[0];
+                draw(block);
+                canvas.classList.add('ready');
+
+                var timer = setInterval(function () {
+                    i++;
+                    block = steps[Math.min(i, steps.length - 1)];
+                    draw(block);
+                    if (block === 1) clearInterval(timer);
+                }, 170);
+            };
+
+            img.src = 'bcc.png';
+            window.addEventListener('resize', resize);
+        })();
+    </script>
+
+<script src="disclaimer.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>
